@@ -1,29 +1,33 @@
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
+import React from 'react';
+import NewGamePage from './NewGamePage.js';
+import JoinGamePage from './JoinGamePage.js';
 import Main from './components/Main.js';
-import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route } from "react-router-dom";
 
-function App() {
-  const [currState, setCurrState] = useState('main');
-  // setCurrState('main');
-  function getComponent(){
-    let component;
-    switch(currState){
-      case 'main' :
-        component = <Main/>;
-        break;
-    }
-    return component;
+export default function App() {
+    
+    return (
+      <Router>
+        <Switch>
+          <Route path="/newGame">
+            <NewGamePage />
+          </Route>
+          <Route path="/joinGame">
+            <JoinGamePage />
+          </Route>
+          <Route path="/">
+            <Main/>
+          </Route>
+        </Switch>
+     
+    </Router>
+      
+    );
+      
   }
 
-  return (
-    <div className="App">
-      {getComponent()}
-      {/* {currState == "main" ? <Main/>: <div />} */}
-
-
-    </div>
-  );
-}
-
-export default App;
